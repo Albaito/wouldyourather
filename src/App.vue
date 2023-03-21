@@ -4,7 +4,7 @@
     <h1>Would You Rather?</h1>
 
  
-
+  <!-- breaks down and sends portions of the question object -->
     <would-you-rather 
     v-for="eachQuestion in questions" v-bind:key="eachQuestion.id"
     v-bind:question="eachQuestion"
@@ -13,7 +13,8 @@
     v-bind:id="eachQuestion.id"
     v-on:answer-changed="answerChanged"
     ></would-you-rather>
-
+    
+    
     <ul>
       <li v-for="answer in answerList" v-bind:key="answer">{{answer}}</li>
     </ul>
@@ -50,7 +51,7 @@ export default {
           answer2: 'Be an incredibly fast runner'
         }
       ],
-      answerList: [null, null, null]
+      answerList: [null, null, null]  // null list to be filled with choices as they're made
     }
   },
   methods: {

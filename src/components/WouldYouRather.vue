@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'WouldYouRather',
-  emits: ['answer-changed'],
+  emits: ['answer-changed'],  // this might be useless
   props: {
     question: Object
   },
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    choiceMade() {
+    choiceMade() {  // emits the choice and object's id back to the parent component
       this.$emit('answer-changed', this.choice, this.question.id)
     }
   }
