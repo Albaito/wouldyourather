@@ -1,15 +1,62 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+
+    <h1>Would You Rather?</h1>
+
+ 
+
+    <would-you-rather 
+    v-for="eachQuestion in questions" v-bind:key="eachQuestion.id"
+    v-bind:question="eachQuestion"
+    v-bind:answer1="eachQuestion.answer1"
+    v-bind:answer2="eachQuestion.answer2"
+    v-bind:id="eachQuestion.id"
+    v-on:answer-changed="answerChanged"
+    ></would-you-rather>
+
+    <ul>
+      <li v-for="answer in answerList" v-bind:key="answer">{{answer}}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WouldYouRather from './components/WouldYouRather.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    WouldYouRather
+  },
+  data() {
+    return {
+      questions: [
+        {
+          id: 0,
+          question:'Have a cat or have a dog?',
+          answer1: 'Have a dog',
+          answer2: 'Have a cat'
+        },
+        {
+          id: 1,
+          question: 'Be a Jedi or be a Sith?',
+          answer1: 'Be a Jedi',
+          answer2: 'Be a Sith'
+        },
+        {
+          id: 2,
+          question: 'Be an incredibly fast swimmer or an incredibly fast runner',
+          answer1: 'Be an incredibly fast swimmer',
+          answer2: 'Be an incredibly fast runner'
+        }
+      ],
+      answerList: [null, null, null]
+    }
+  },
+  methods: {
+    answerChanged(choice, id) {
+        this.answerList[id] = choice
+    }
   }
 }
 </script>
@@ -22,5 +69,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+  background: white;
 }
 </style>
